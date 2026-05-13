@@ -34,7 +34,7 @@ export const ClientSideLayout = ({ children }: { children: React.ReactNode }) =>
         </>
       )}
 
-      <Box flex="1" m={0} p={0} className="mt-5">
+      <Box flex="1" m={0} p={0}>
         {children}
       </Box>
 
