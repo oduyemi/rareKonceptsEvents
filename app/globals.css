@@ -194,6 +194,7 @@
 
 .premium-dropdown {
   position: relative;
+  z-index: 99999;
 }
 
 .dropdown-trigger {
