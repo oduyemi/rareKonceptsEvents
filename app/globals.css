@@ -833,19 +833,19 @@
 
 .service-item.service-item-left {
   border-radius: 500px 0 0 500px;
-  background: linear-gradient(to right, var(--bs-secondary), var(--bs-dark));
+  background: linear-gradient(to right, #22007C, #FFF);
 }
 
 .service-item.service-item-right {
   border-radius: 0 500px 500px 0;
-  background: linear-gradient(to left, var(--bs-secondary), var(--bs-dark));
+  background: linear-gradient(to right, #22007C, #FFF);
 }
 
 @media (max-width: 767.98px) {
   .service-item.service-item-left,
   .service-item.service-item-right {
       border-radius: 500px 500px 0 0;
-      background: linear-gradient(to bottom, var(--bs-secondary), var(--bs-dark));
+      background: linear-gradient(to bottom, #22007C, #FFF);
       text-align: center;
   }
 }

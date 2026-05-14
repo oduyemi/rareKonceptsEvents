@@ -1,12 +1,18 @@
-import { AboutSection } from "@/components/home/About";
+import { Gallery } from "@/components/home/Gallery";
 import {Hero} from "@/components/home/Hero";
+import {OurPackages} from "@/components/home/OurPackages";
+import { OurServices } from "@/components/home/OurServices";
+import {TrustedExperience} from "@/components/home/TrustedExperience";
 
 export default function Home() {
   return (
-    <div className="">
+    <div>
       <main>
         <Hero />
-        <AboutSection />
+        <TrustedExperience />
+        <OurServices />
+        <OurPackages />
+        <Gallery />
       </main>
     </div>
   );
