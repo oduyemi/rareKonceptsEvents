@@ -63,7 +63,7 @@ export const Header = () => {
               About
             </Link>
 
-            <Link href="/service" className="nav-item nav-link">
+            <Link href="/services" className="nav-item nav-link">
               Services
             </Link>
 

@@ -139,7 +139,7 @@ export const TrustedExperience = () => {
 
               <VStack
                 align="start"
-                spacing={6}
+                gap={6}
                 position="relative"
                 zIndex={2}
               >
@@ -185,7 +185,7 @@ export const TrustedExperience = () => {
 
                 {/* TRUST TAGS */}
                 <HStack
-                  spacing={3}
+                  gap={3}
                   flexWrap="wrap"
                 >
                   {[
@@ -262,7 +262,7 @@ export const TrustedExperience = () => {
                     />
 
                     <Stack
-                      spacing={4}
+                      gap={4}
                       position="relative"
                       zIndex={2}
                     >

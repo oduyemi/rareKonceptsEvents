@@ -968,8 +968,15 @@
   }
 }
 
+
+.abt{
+  background-image: url(/images/homehero2.png);
+  height: 480px;
+  background-position-y: 15%;
+}
+
 .footer {
-/* background-image: url(../img/footer-bg.png); */
+/* background-image: url(/images/footer-bg.png); */
 background-position: 0px 0px;
   background-repeat: repeat-x;
 animation: footerAnimatedBg 50s linear infinite;

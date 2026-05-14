@@ -125,7 +125,7 @@ export const GalleryCard =({
             md: 7,
           }}
         >
-          <Stack spacing={4}>
+          <Stack gap={4}>
             <Badge
               alignSelf="flex-start"
               bg="rgba(255,255,255,0.12)"

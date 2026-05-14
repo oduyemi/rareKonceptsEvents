@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { GalleryCard } from "@/components/gallery/Card";
 import { galleryImages } from "@/components/gallery/index";
+import { GalleryHero } from "@/components/gallery/Hero";
 
 
 export default function MainGallery() {
@@ -78,6 +79,7 @@ export default function MainGallery() {
 
   return (
     <>
+      <GalleryHero />
       <Box
         bg="white"
         position="relative"
@@ -304,7 +306,7 @@ export default function MainGallery() {
             >
               <VStack
                 align="start"
-                spacing={5}
+                gap={5}
                 maxW="700px"
               >
                 <Flex
@@ -544,7 +546,7 @@ export default function MainGallery() {
                   backdropFilter="blur(24px)"
                   border="1px solid rgba(255,255,255,0.12)"
                 >
-                  <Stack spacing={3}>
+                  <Stack gap={3}>
                     <Badge
                       alignSelf="flex-start"
                       bg="rgba(255,255,255,0.12)"

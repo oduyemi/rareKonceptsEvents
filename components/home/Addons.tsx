@@ -34,7 +34,7 @@ export default function OptionalAddOns() {
         px={{ base: 6, md: 8 }}
       >
         <VStack
-          spacing={5}
+          gap={5}
           textAlign="center"
           maxW="720px"
           mx="auto"

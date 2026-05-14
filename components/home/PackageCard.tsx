@@ -58,7 +58,7 @@ export default function PackageCard({
       />
 
       <Stack
-        spacing={7}
+        gap={7}
         p={{ base: 6, md: 7 }}
       >
         {/* TOP */}
@@ -125,12 +125,12 @@ export default function PackageCard({
         </Box>
 
         {/* SERVICES */}
-        <Stack spacing={4}>
+        <Stack gap={4}>
           {pkg.includes.map((item, i) => (
             <HStack
               key={i}
               align="flex-start"
-              spacing={3}
+              gap={3}
             >
               <Icon
                 as={CheckCircle2}
@@ -178,15 +178,21 @@ export default function PackageCard({
         {/* CTA */}
         <Button
           h="54px"
-          bg={pkg.featured ? "#AF3800" : "#22007C"}
-          color="white"
+          px={8}
           borderRadius="full"
+          bg="#22007C"
+          color="white"
           fontWeight="600"
-          rightIcon={<ArrowRight size={17} />}
+          fontSize="md"
+          w={{
+              base: "100%",
+              sm: "auto",
+          }}
+          boxShadow="0 20px 50px rgba(34,0,124,0.18)"
+          transition="all 0.35s ease"
           _hover={{
-            bg: pkg.featured
-              ? "#922d00"
-              : "#160052",
+              bg: "#160052",
+              transform: "translateY(-3px)",
           }}
         >
           Book Consultation

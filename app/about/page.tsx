@@ -1,12 +1,12 @@
+import { AboutHero } from "@/components/about/Hero";
 import { About } from "@/components/about/About";
-import {Hero} from "@/components/home/Hero";
 
 
 export default function Home() {
   return (
-    <div className="">
+    <div>
       <main>
-        <Hero />
+        <AboutHero />
         <About />
       </main>
     </div>

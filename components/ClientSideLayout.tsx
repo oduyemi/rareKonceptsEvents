@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { Box } from "@chakra-ui/react";
 import { Header } from "@/navigation/Header";
-// import { Footer } from "@/navigation/Footer";
+import { Footer } from "@/navigation/Footer";
 import { WhatsAppChatButton } from "@/components/LiveChat";
 
 export const ClientSideLayout = ({ children }: { children: React.ReactNode }) => {
@@ -42,7 +42,7 @@ export const ClientSideLayout = ({ children }: { children: React.ReactNode }) =>
         <>
           <WhatsAppChatButton />
           <Box className="mt-5">
-            {/* <Footer /> */}
+            <Footer />
           </Box>
         </>
       )}

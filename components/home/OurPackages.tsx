@@ -6,7 +6,6 @@ import {
   Container,
   Grid,
   Heading,
-  Stack,
   Text,
   VStack,
 } from "@chakra-ui/react";
@@ -31,7 +30,7 @@ export const OurPackages = () => {
         >
             {/* HEADER */}
             <VStack
-            spacing={5}
+            gap={5}
             textAlign="center"
             maxW="760px"
             mx="auto"
@@ -102,13 +101,20 @@ export const OurPackages = () => {
             <Button
                 h="58px"
                 px={8}
+                borderRadius="full"
                 bg="#22007C"
                 color="white"
-                borderRadius="full"
                 fontWeight="600"
-                rightIcon={<ArrowRight size={18} />}
+                fontSize="md"
+                w={{
+                    base: "100%",
+                    sm: "auto",
+                }}
+                boxShadow="0 20px 50px rgba(34,0,124,0.18)"
+                transition="all 0.35s ease"
                 _hover={{
-                bg: "#160052",
+                    bg: "#160052",
+                    transform: "translateY(-3px)",
                 }}
             >
                 Schedule a Consultation
