@@ -29,7 +29,7 @@ export const galleryImages = [
       category: "Corporate",
     },
     {
-      src: "/images/executive-dinner6.jpg",
+      src: "/images/executive-dinner6.jpeg",
       title: "High-Level Corporate Banquet",
       category: "Corporate",
     },
