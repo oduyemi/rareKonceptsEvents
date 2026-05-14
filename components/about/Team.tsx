@@ -137,6 +137,7 @@ export default function OurTeam() {
   return (
     <Box
       bg="white"
+      className="ps-md-2"
       py={{
         base: 24,
         md: 32,

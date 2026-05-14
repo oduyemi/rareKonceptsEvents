@@ -30,6 +30,7 @@ export const MissionVision = () => {
       bg="white"
       position="relative"
       overflow="hidden"
+      className="ps-md-4"
     >
       {/* AMBIENT LIGHTS */}
       <Box

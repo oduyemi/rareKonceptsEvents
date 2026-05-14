@@ -77,6 +77,7 @@ export const CoreValues = () => {
       bg="#fafafa"
       position="relative"
       overflow="hidden"
+      className="ps-md-4"
     >
       {/* LIGHTS */}
       <Box

@@ -75,6 +75,7 @@ export const Footer = () => {
       color="white"
       position="relative"
       overflow="hidden"
+      className="ps-5"
       pt={{
         base: 20,
         md: 24,
@@ -269,9 +270,23 @@ export const Footer = () => {
             </Text>
 
             <HStack gap={4}>
-              <SocialIcon icon={FaInstagram} />
-              <SocialIcon icon={FaFacebookF} />
+              <Link 
+                href="https://www.instagram.com/rarekonceptseventndecor/"
+                target="_blank"
+              >
+                <SocialIcon icon={FaInstagram} />
+              </Link>
+              <Link 
+                href=""
+                target="_blank"
+              >
+                <SocialIcon icon={FaFacebookF} />
+              </Link>
+              <Link 
+                href="mailto:rarekonceptsevents@gmail.com"
+              >
               <SocialIcon icon={Mail} />
+              </Link>
             </HStack>
           </Stack>
 

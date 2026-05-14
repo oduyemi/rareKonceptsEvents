@@ -384,6 +384,7 @@
     left: -100%;
     width: 100%;
     height: calc(100vh - 84px);
+    z-index: 99999;
 
     background:
       linear-gradient(

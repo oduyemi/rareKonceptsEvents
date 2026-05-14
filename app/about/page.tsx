@@ -5,7 +5,7 @@ import { CoreValues } from "@/components/about/CoreValues";
 import OurTeam from "@/components/about/Team";
 
 
-export default function Home() {
+export default function AboutAwa() {
   return (
     <div>
       <main>
