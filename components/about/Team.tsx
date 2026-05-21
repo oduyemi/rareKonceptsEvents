@@ -1,6 +1,6 @@
 "use client";
+import{ useState } from "react";
 import Image from "next/image";
-
 import {
   Badge,
   Box,
@@ -8,170 +8,103 @@ import {
   Flex,
   Grid,
   Heading,
-  HStack,
-  Stack,
   Text,
+  Stack,
 } from "@chakra-ui/react";
 
 type TeamMember = {
   name: string;
   role: string;
   image: string;
-  infoLeft: string[];
-  infoRight: string[];
+  caption: string;
+  accent: string;
 };
 
 const teamMembers: TeamMember[] = [
   {
     name: "Abiola Awoyemi-Sonubi",
     role: "Lead Planner / Principal Consultant",
-    image: "/images/team/abiola.png",
-    infoLeft: [
-      "Planning",
-      "Logistics",
-      "Vendor Mgmt",
-      "Execution",
-      "Client Strategy",
-      "Coordination",
-    ],
-    infoRight: [
-      "Luxury Events",
-      "Weddings",
-      "Corporate",
-      "Timelines",
-      "Guest Flow",
-      "Excellence",
-    ],
+    image: "/images/team/abiola.jpeg",
+    accent: "#22007C",
+    caption:
+      "Abiola is the lead visionary behind Rarekoncepts Events & Décor — overseeing planning, logistics, vendor management, and end-to-end event execution. With a proven track record in delivering well-coordinated and memorable celebrations, she provides strategic guidance, ensures seamless flow on event day, and maintains direct communication with clients to bring their dreams to life with excellence.",
   },
 
   {
     name: "Sheilla Adeniji",
     role: "Head Decorator",
-    image: "/images/team-sheilla.jpg",
-    infoLeft: [
-      "Spatial Styling",
-      "Floral Design",
-      "Color Curation",
-      "Venue Decor",
-      "Luxury Ambience",
-      "Installations",
-    ],
-    infoRight: [
-      "Elegant Themes",
-      "Backdrop Design",
-      "Aesthetics",
-      "Tablescapes",
-      "Atmosphere",
-      "Creative Styling",
-    ],
+    image: "/images/team/sheila.jpeg",
+    accent: "#AF3800",
+    caption:
+      "Sheilla leads the décor execution team, specializing in aesthetic detailing, spatial styling, and ambience creation. She brings concepts to life through creative interpretation, color coordination, floral designs, and décor installation, ensuring every event space embodies class, warmth, and personality.",
   },
 
   {
-    name: "Omotayo J. Fagbohunmi",
+    name: "Omotayo John Fagbohunmi",
     role: "Lead Event Designer",
-    image: "/images/team-omotayo.jpg",
-    infoLeft: [
-      "Mood Boards",
-      "Concept Design",
-      "Themes",
-      "Storytelling",
-      "Layouts",
-      "Event Flow",
-    ],
-    infoRight: [
-      "Creative Direction",
-      "Luxury Styling",
-      "Design Strategy",
-      "Immersive Spaces",
-      "Experiences",
-      "Innovation",
-    ],
+    image: "/images/team/john.jpeg",
+    accent: "#22007C",
+    caption:
+      "Omotayo is responsible for concept development, creative direction, and thematic styling. From mood boards, layouts, and event flow design, she ensures each celebration has its own unique story. Her design expertise ensures that the décor and experience align perfectly with clients’ personalities and event goals.",
   },
 
   {
     name: "Temitope R Oyedeji",
     role: "Event Planning Assistant",
-    image: "/images/team-temitope.jpg",
-    infoLeft: [
-      "Documentation",
-      "Vendor Follow-up",
-      "Coordination",
-      "Communication",
-      "Scheduling",
-      "Operations",
-    ],
-    infoRight: [
-      "Guest Support",
-      "Planning Ops",
-      "Timelines",
-      "Detail-Oriented",
-      "Execution",
-      "Event Prep",
-    ],
+    image: "/images/team/temitope.jpeg",
+    accent: "#AF3800",
+    caption:
+      "Temitope supports planning operations, documentation, vendor follow-ups, and guest coordination. Her attention to detail and prompt communication keep processes smooth throughout pre-event preparations and on-site activities.",
   },
 
   {
     name: "Adetutu Odunukan",
     role: "Event Planning Assistant",
-    image: "/images/team-adetutu.jpg",
-    infoLeft: [
-      "Setup Mgmt",
-      "Backstage Ops",
-      "Logistics",
-      "Execution",
-      "Coordination",
-      "Event Support",
-    ],
-    infoRight: [
-      "Venue Setup",
-      "Efficiency",
-      "Professionalism",
-      "Precision",
-      "Event Day",
-      "Seamless Flow",
-    ],
+    image: "/images/team/adetutu.jpeg",
+    accent: "#22007C",
+    caption:
+      "Adetutu provides operational support for logistics, timeline execution, setup coordination, and backstage management. She plays a vital role in ensuring tasks are executed efficiently and all elements come together seamlessly on the event day.",
   },
 ];
 
 export default function OurTeam() {
   return (
     <Box
-      bg="white"
-      className="ps-md-2"
+      bg="#fafafa"
+      position="relative"
+      overflow="hidden"
       py={{
         base: 24,
         md: 32,
       }}
-      position="relative"
-      overflow="hidden"
     >
-      {/* AMBIENT LIGHTS */}
+      {/* PREMIUM AMBIENT BLOBS */}
       <Box
         position="absolute"
-        top="-180px"
-        left="-100px"
-        w="420px"
-        h="420px"
-        borderRadius="full"
+        top="-220px"
+        left="-120px"
+        w="520px"
+        h="520px"
         bg="#22007C"
-        opacity={0.05}
-        filter="blur(120px)"
+        opacity={0.06}
+        borderRadius="full"
+        filter="blur(160px)"
       />
 
       <Box
         position="absolute"
-        bottom="-180px"
-        right="-100px"
-        w="420px"
-        h="420px"
-        borderRadius="full"
+        bottom="-240px"
+        right="-120px"
+        w="520px"
+        h="520px"
         bg="#AF3800"
-        opacity={0.05}
-        filter="blur(120px)"
+        opacity={0.06}
+        borderRadius="full"
+        filter="blur(160px)"
       />
 
       <Container
-        maxW="1500px"
+        maxW="1550px"
         position="relative"
         zIndex={2}
       >
@@ -182,37 +115,37 @@ export default function OurTeam() {
           textAlign="center"
           mb={{
             base: 16,
-            md: 20,
+            md: 24,
           }}
         >
           <Badge
-            px={5}
-            py={2}
+            px={6}
+            py={2.5}
             borderRadius="full"
-            bg="rgba(34,0,124,0.05)"
+            bg="rgba(34,0,124,0.06)"
             color="#22007C"
             border="1px solid rgba(34,0,124,0.08)"
-            fontSize="0.72rem"
             fontWeight="700"
             letterSpacing="0.18em"
+            fontSize="0.72rem"
             backdropFilter="blur(10px)"
           >
-            OUR CREATIVE TEAM
+            OUR TEAM PROFILE
           </Badge>
 
           <Heading
-            mt={7}
-            color="#111827"
+            mt={8}
             fontWeight="900"
-            lineHeight="0.9"
+            lineHeight="0.88"
             letterSpacing="-0.08em"
+            color="#111827"
+            maxW="1100px"
             fontSize={{
-              base: "3rem",
-              md: "6rem",
+              base: "3.2rem",
+              md: "6.5rem",
             }}
-            maxW="1000px"
           >
-            Meet The Experts Behind
+            The Minds Behind
             <Text
               as="span"
               display="block"
@@ -223,8 +156,8 @@ export default function OurTeam() {
           </Heading>
 
           <Text
-            mt={7}
-            maxW="760px"
+            mt={8}
+            maxW="820px"
             color="gray.600"
             lineHeight="2"
             fontSize={{
@@ -232,280 +165,370 @@ export default function OurTeam() {
               md: "lg",
             }}
           >
-            Strategy, creativity, elegance, and
-            precision execution — our team combines
-            expertise and passion to craft timeless
-            luxury experiences.
+            Collectively, our team brings strategy,
+            creativity, and precision execution —
+            ensuring every client feels seen, valued,
+            and beautifully celebrated.
           </Text>
         </Flex>
 
         {/* GRID */}
         <Grid
-          templateColumns={{
-            base: "1fr",
-            sm: "repeat(2,1fr)",
-            xl: "repeat(3,1fr)",
+  templateColumns={{
+    base: "1fr",
+    md: "repeat(2,1fr)",
+    xl: "repeat(3,1fr)",
+  }}
+  gap={10}
+>
+  {teamMembers.map((member, index) => {
+    const [hovered, setHovered] =
+      useState(false);
+
+    return (
+      <Box
+        key={index}
+        position="relative"
+        onMouseEnter={() =>
+          setHovered(true)
+        }
+        onMouseLeave={() =>
+          setHovered(false)
+        }
+        transition="
+          transform .8s cubic-bezier(.22,1,.36,1)
+        "
+        transform={
+          hovered
+            ? "translateY(-10px)"
+            : "translateY(0px)"
+        }
+      >
+        <Box
+          position="relative"
+          overflow="hidden"
+          borderRadius="40px"
+          h={{
+            base: "620px",
+            md: "760px",
           }}
-          gap={7}
+          bg="#f4f4f4"
+          boxShadow={
+            hovered
+              ? "0 40px 100px rgba(15,23,42,0.12)"
+              : "0 20px 60px rgba(15,23,42,0.06)"
+          }
+          transition="
+            all .8s cubic-bezier(.22,1,.36,1)
+          "
         >
-          {teamMembers.map((member, index) => (
-            <Box
-              key={index}
-              role="group"
-            >
-              {/* CARD */}
-              <Box
-                position="relative"
-                overflow="hidden"
-                borderRadius="36px"
-                h={{
-                  base: "500px",
-                  md: "620px",
-                }}
-                bg="#f8f8f8"
-                boxShadow="
-                  0 20px 60px rgba(15,23,42,0.06),
-                  0 8px 30px rgba(15,23,42,0.04)
-                "
+          {/* IMAGE */}
+          <Box
+            position="absolute"
+            inset={0}
+            transition="
+              transform 1.6s cubic-bezier(.22,1,.36,1),
+              filter 1.2s ease
+            "
+            transform={
+              hovered
+                ? "scale(1.06)"
+                : "scale(1)"
+            }
+            filter={
+              hovered
+                ? "grayscale(0%) brightness(0.72)"
+                : "grayscale(18%) brightness(0.88)"
+            }
+          >
+            <Image
+              src={member.image}
+              alt={member.name}
+              fill
+              style={{
+                objectFit: "cover",
+              }}
+            />
+          </Box>
+
+          {/* SOFT CINEMATIC OVERLAY */}
+          <Box
+            position="absolute"
+            inset={0}
+            bg={
+              hovered
+                ? `
+                linear-gradient(
+                  to top,
+                  rgba(0,0,0,0.82),
+                  rgba(0,0,0,0.35),
+                  rgba(0,0,0,0.08)
+                )
+              `
+                : `
+                linear-gradient(
+                  to top,
+                  rgba(0,0,0,0.52),
+                  rgba(0,0,0,0.16),
+                  rgba(0,0,0,0.02)
+                )
+              `
+            }
+            transition=".8s ease"
+          />
+
+          {/* GOLD AMBIENT */}
+          <Box
+            position="absolute"
+            top="-120px"
+            right="-120px"
+            w="260px"
+            h="260px"
+            borderRadius="full"
+            bg="#D4AF37"
+            opacity={hovered ? 0.14 : 0}
+            filter="blur(100px)"
+            transition=".9s ease"
+          />
+
+          {/* DEFAULT CONTENT */}
+          <Flex
+            position="absolute"
+            bottom={0}
+            left={0}
+            right={0}
+            p={8}
+            zIndex={3}
+            opacity={hovered ? 0 : 1}
+            transform={
+              hovered
+                ? "translateY(30px)"
+                : "translateY(0px)"
+            }
+            transition="
+              all .55s cubic-bezier(.22,1,.36,1)
+            "
+          >
+            <Box>
+              <Text
+                color="#D4AF37"
+                fontSize="0.72rem"
+                letterSpacing="0.18em"
+                textTransform="uppercase"
+                mb={4}
               >
-                {/* IMAGE */}
-                <Image
-                  src={member.image}
-                  alt={member.name}
-                  fill
-                  style={{
-                    objectFit: "cover",
-                    transition:
-                      "transform 1.2s cubic-bezier(.22,1,.36,1)",
-                  }}
-                />
+                Rarekoncepts Team
+              </Text>
 
-                {/* DARK OVERLAY */}
-                <Box
-                  position="absolute"
-                  inset={0}
-                  bg="
-                    linear-gradient(
-                      to top,
-                      rgba(0,0,0,0.78),
-                      rgba(0,0,0,0.22),
-                      rgba(0,0,0,0.04)
-                    )
-                  "
-                />
+              <Heading
+                color="white"
+                fontWeight="900"
+                lineHeight="0.92"
+                letterSpacing="-0.06em"
+                fontSize={{
+                  base: "2rem",
+                  md: "2.6rem",
+                }}
+                maxW="420px"
+              >
+                {member.name}
+              </Heading>
 
-                {/* LEFT GLASS PANEL */}
-                <Flex
-                  direction="column"
-                  justify="center"
-                  position="absolute"
-                  top={0}
-                  left={0}
-                  w="0%"
-                  h="100%"
-                  overflow="hidden"
-                  bg="rgba(34,0,124,0.42)"
-                  backdropFilter="blur(16px)"
-                  borderRight="1px solid rgba(255,255,255,0.08)"
-                  transition="
-                    width 0.6s cubic-bezier(.22,1,.36,1)
-                  "
-                  _groupHover={{
-                    width: "50%",
-                  }}
-                >
-                  <Stack
-                    gap={4}
-                    px={6}
-                    align="flex-end"
+              <Text
+                mt={4}
+                color="rgba(255,255,255,0.70)"
+                textTransform="uppercase"
+                letterSpacing="0.14em"
+                fontSize="0.72rem"
+              >
+                {member.role}
+              </Text>
+            </Box>
+          </Flex>
+
+          {/* STORY REVEAL */}
+          <Flex
+            position="absolute"
+            inset={0}
+            align="center"
+            justify="center"
+            zIndex={4}
+            p={8}
+            opacity={hovered ? 1 : 0}
+            transform={
+              hovered
+                ? "translateY(0px)"
+                : "translateY(40px)"
+            }
+            transition="
+              all .8s cubic-bezier(.22,1,.36,1)
+            "
+          >
+            <Box
+              bg="rgba(255,255,255,0.08)"
+              backdropFilter="blur(28px)"
+              border="
+                1px solid rgba(255,255,255,0.10)
+              "
+              borderRadius="36px"
+              p={{
+                base: 7,
+                md: 9,
+              }}
+              maxW="92%"
+            >
+              <Stack gap={6}>
+                <Box>
+                  <Text
+                    color="#D4AF37"
+                    fontSize="0.72rem"
+                    letterSpacing="0.18em"
+                    textTransform="uppercase"
+                    mb={3}
                   >
-                    {member.infoLeft.map(
-                      (item, i) => (
-                        <Text
-                          key={i}
-                          color="white"
-                          fontWeight="600"
-                          fontSize="sm"
-                          textAlign="right"
-                          opacity={0}
-                          transform="translateX(-15px)"
-                          transition="
-                            all 0.45s ease
-                          "
-                          _groupHover={{
-                            opacity: 1,
-                            transform:
-                              "translateX(0px)",
-                            transitionDelay: `${i * 0.07}s`,
-                          }}
-                        >
-                          {item}
-                        </Text>
-                      )
-                    )}
-                  </Stack>
-                </Flex>
+                    Team Profile
+                  </Text>
 
-                {/* RIGHT GLASS PANEL */}
-                <Flex
-                  direction="column"
-                  justify="center"
-                  position="absolute"
-                  top={0}
-                  right={0}
-                  w="0%"
-                  h="100%"
-                  overflow="hidden"
-                  bg="rgba(175,56,0,0.42)"
-                  backdropFilter="blur(16px)"
-                  borderLeft="1px solid rgba(255,255,255,0.08)"
-                  transition="
-                    width 0.6s cubic-bezier(.22,1,.36,1)
-                  "
-                  _groupHover={{
-                    width: "50%",
-                  }}
-                >
-                  <Stack
-                    gap={4}
-                    px={6}
-                    align="flex-start"
-                  >
-                    {member.infoRight.map(
-                      (item, i) => (
-                        <Text
-                          key={i}
-                          color="white"
-                          fontWeight="600"
-                          fontSize="sm"
-                          opacity={0}
-                          transform="translateX(15px)"
-                          transition="
-                            all 0.45s ease
-                          "
-                          _groupHover={{
-                            opacity: 1,
-                            transform:
-                              "translateX(0px)",
-                            transitionDelay: `${i * 0.07}s`,
-                          }}
-                        >
-                          {item}
-                        </Text>
-                      )
-                    )}
-                  </Stack>
-                </Flex>
-
-                {/* CENTER LINE */}
-                <Box
-                  position="absolute"
-                  top="50%"
-                  left="50%"
-                  transform="
-                    translate(-50%, -50%)
-                  "
-                  w="1px"
-                  h="0%"
-                  bg="rgba(255,255,255,0.25)"
-                  transition="0.5s ease"
-                  _groupHover={{
-                    h: "72%",
-                  }}
-                />
-
-                {/* GOLD LIGHT */}
-                <Box
-                  position="absolute"
-                  top="-100px"
-                  right="-100px"
-                  w="240px"
-                  h="240px"
-                  borderRadius="full"
-                  bg="#D4AF37"
-                  opacity={0}
-                  filter="blur(80px)"
-                  transition="0.6s ease"
-                  _groupHover={{
-                    opacity: 0.2,
-                  }}
-                />
-
-                {/* BOTTOM INFO */}
-                <Box
-                  position="absolute"
-                  bottom={0}
-                  left={0}
-                  right={0}
-                  p={7}
-                  zIndex={5}
-                >
-                  <Box
-                    bg="rgba(255,255,255,0.08)"
-                    backdropFilter="blur(20px)"
-                    border="1px solid rgba(255,255,255,0.10)"
-                    borderRadius="28px"
-                    p={5}
-                    transition="0.45s ease"
-                    _groupHover={{
-                      bg: "rgba(255,255,255,0.12)",
+                  <Heading
+                    color="white"
+                    fontWeight="800"
+                    lineHeight="1"
+                    letterSpacing="-0.05em"
+                    fontSize={{
+                      base: "1.7rem",
+                      md: "2.2rem",
                     }}
                   >
-                    <Stack gap={3}>
-                      <Badge
-                        alignSelf="flex-start"
-                        bg="rgba(255,255,255,0.12)"
-                        color="white"
-                        px={4}
-                        py={1.5}
-                        borderRadius="full"
-                        fontSize="0.65rem"
-                        letterSpacing="0.14em"
-                        border="1px solid rgba(255,255,255,0.10)"
-                      >
-                        TEAM MEMBER
-                      </Badge>
+                    {member.name}
+                  </Heading>
 
-                      <Heading
-                        color="white"
-                        fontWeight="800"
-                        lineHeight="0.95"
-                        letterSpacing="-0.05em"
-                        fontSize={{
-                          base: "1.7rem",
-                          md: "2.2rem",
-                        }}
-                      >
-                        {member.name}
-                      </Heading>
-
-                      <HStack
-                        gap={3}
-                        flexWrap="wrap"
-                      >
-                        <Box
-                          w="8px"
-                          h="8px"
-                          borderRadius="full"
-                          bg="#D4AF37"
-                        />
-
-                        <Text
-                          color="rgba(255,255,255,0.72)"
-                          fontSize="sm"
-                          letterSpacing="0.04em"
-                          textTransform="uppercase"
-                        >
-                          {member.role}
-                        </Text>
-                      </HStack>
-                    </Stack>
-                  </Box>
+                  <Text
+                    mt={3}
+                    color="
+                      rgba(255,255,255,0.65)
+                    "
+                    textTransform="uppercase"
+                    letterSpacing="0.12em"
+                    fontSize="0.7rem"
+                  >
+                    {member.role}
+                  </Text>
                 </Box>
-              </Box>
+
+                <Box
+                  w="70px"
+                  h="1px"
+                  bg="
+                    rgba(255,255,255,0.18)
+                  "
+                />
+
+                <Text
+                  color="
+                    rgba(255,255,255,0.88)
+                  "
+                  lineHeight="2"
+                  fontSize={{
+                    base: "sm",
+                    md: "md",
+                  }}
+                >
+                  {member.caption}
+                </Text>
+              </Stack>
             </Box>
-          ))}
-        </Grid>
+          </Flex>
+
+          {/* SUBTLE BORDER */}
+          <Box
+            position="absolute"
+            inset="1px"
+            borderRadius="39px"
+            border="
+              1px solid rgba(255,255,255,0.08)
+            "
+            pointerEvents="none"
+          />
+        </Box>
+      </Box>
+    );
+  })}
+</Grid>
+
+        {/* BOTTOM SUMMARY SECTION */}
+        <Flex
+          mt={{
+            base: 20,
+            md: 28,
+          }}
+          justify="center"
+        >
+          <Box
+            maxW="1100px"
+            textAlign="center"
+            borderRadius="40px"
+            bg="white"
+            border="1px solid rgba(15,23,42,0.06)"
+            p={{
+              base: 8,
+              md: 12,
+            }}
+            boxShadow="
+              0 20px 60px rgba(15,23,42,0.05)
+            "
+          >
+            <Badge
+              bg="rgba(212,175,55,0.12)"
+              color="#8B6B00"
+              px={5}
+              py={2}
+              borderRadius="full"
+              letterSpacing="0.16em"
+              fontSize="0.68rem"
+              mb={6}
+            >
+              IN SUMMARY
+            </Badge>
+
+            <Heading
+              color="#111827"
+              fontWeight="900"
+              lineHeight="1"
+              letterSpacing="-0.06em"
+              fontSize={{
+                base: "2.3rem",
+                md: "4rem",
+              }}
+            >
+              Strategy. Creativity.
+              <Text
+                as="span"
+                color="#22007C"
+              >
+                {" "}
+                Precision.
+              </Text>
+            </Heading>
+
+            <Text
+              mt={6}
+              color="gray.600"
+              lineHeight="2"
+              maxW="760px"
+              mx="auto"
+              fontSize={{
+                base: "md",
+                md: "lg",
+              }}
+            >
+              Every Rarekoncepts experience is
+              carefully curated through collaboration,
+              innovation, elegant styling, and flawless
+              execution — creating timeless celebrations
+              that leave lasting impressions.
+            </Text>
+          </Box>
+        </Flex>
       </Container>
     </Box>
   );

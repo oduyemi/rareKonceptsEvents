@@ -1,5 +1,5 @@
-import { OurServices } from "@/components/home/OurServices";
 import { ServicesHero } from "@/components/services/Hero";
+import { AwonServices } from "@/components/services/Services";
 import { Testimonials } from "@/components/testimonials/index";
 
 
@@ -9,7 +9,7 @@ export default function ServicesWa() {
     <div>
       <main>
         <ServicesHero />
-        <OurServices />
+        <AwonServices />
         <Testimonials />
       </main>
     </div>

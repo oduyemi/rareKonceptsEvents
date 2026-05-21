@@ -1,9 +1,7 @@
 "use client";
-import Link from "next/link";
 import {
   Badge,
   Box,
-  Button,
   Container,
   Flex,
   Grid,
@@ -16,7 +14,6 @@ import {
 } from "@chakra-ui/react";
 
 import {
-  ArrowRight,
   Sparkles,
 } from "lucide-react";
 
@@ -73,7 +70,7 @@ const services = [
   },
 ];
 
-export const OurServices = () => {
+export const AwonServices = () => {
   return (
     <Box
       py={{
@@ -451,42 +448,6 @@ export const OurServices = () => {
                           </Flex>
                         ))}
                       </HStack>
-
-                      <Link href="/contact">
-                      <Button
-                        h="60px"
-                        px={8}
-                        borderRadius="full"
-                        bg={
-                          isRight
-                            ? "#22007C"
-                            : "white"
-                        }
-                        color={
-                          isRight
-                            ? "white"
-                            : "#22007C"
-                        }
-                        fontWeight="700"
-                        boxShadow={
-                          isRight
-                            ? "0 20px 50px rgba(34,0,124,0.18)"
-                            : "0 20px 50px rgba(0,0,0,0.12)"
-                        }
-                        transition="all 0.35s ease"
-                        _hover={{
-                          transform: "translateY(-3px)",
-                          bg: isRight
-                            ? "#160052"
-                            : "#F5F5F5",
-                        }}
-                      >
-                        <Flex align="center" gap={2}>
-                          <Text className="pt-2">Read More</Text>
-                          <ArrowRight size={18} />
-                        </Flex>
-                      </Button>
-                      </Link>
                     </VStack>
                   </Flex>
                 </Grid>
