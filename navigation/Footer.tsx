@@ -27,6 +27,7 @@ import {
     FaInstagram,
     FaFacebookF,
   } from "react-icons/fa";
+import { ConsultationDialog } from "@/dialogs/consultation-dialog";
 
 const footerLinks = {
   company: [
@@ -199,8 +200,8 @@ export const Footer = () => {
               </Text>
             </VStack>
 
-            <Link href="/consultation">
-              <Button
+            <ConsultationDialog />
+              {/* <Button
                 h="64px"
                 px={8}
                 borderRadius="full"
@@ -210,13 +211,12 @@ export const Footer = () => {
                 fontSize="md"
                 transition="0.35s ease"
                 _hover={{
-                  transform:
-                    "translateY(-3px)",
+                  transform: "translateY(-3px)",
                 }}
               >
                 Book Consultation
-              </Button>
-            </Link>
+              </Button> */}
+            {/* </ConsultationDialog> */}
           </Flex>
         </Box>
 
@@ -393,7 +393,7 @@ export const Footer = () => {
                 <Text
                   color="rgba(255,255,255,0.72)"
                 >
-                  +234 000 000 0000
+                  +234 803 345 4969
                 </Text>
               </HStack>
 
@@ -419,7 +419,8 @@ export const Footer = () => {
                 <Text
                   color="rgba(255,255,255,0.72)"
                 >
-                  hello@rarekoncepts.com
+                  rarekonceptsevents@gmail.com
+
                 </Text>
               </HStack>
             </Stack>

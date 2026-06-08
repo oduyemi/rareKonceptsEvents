@@ -117,7 +117,7 @@ export const OurPackages = () => {
                     transform: "translateY(-3px)",
                 }}
             >
-                Schedule a Consultation
+                Book a Consultation
             </Button>
             </Box>
         </Container>

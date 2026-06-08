@@ -109,7 +109,7 @@ export const Header = () => {
                 </Link>
 
                 <Link
-                  href="/social-connect"
+                  href="/connect"
                   className="dropdown-item-custom"
                 >
                   <span>Social Connect</span>

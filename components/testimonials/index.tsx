@@ -1,21 +1,40 @@
 "use client";
+
 import {
   Box,
   Container,
   Heading,
   Text,
   VStack,
-  Image,
   Flex,
   HStack,
 } from "@chakra-ui/react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectFade, Pagination } from "swiper/modules";
-import { Quote, Star } from "lucide-react";
+
+import {
+  Swiper,
+  SwiperSlide,
+} from "swiper/react";
+
+import {
+  Autoplay,
+  EffectFade,
+  Pagination,
+} from "swiper/modules";
+
+import {
+  Quote,
+  Star,
+} from "lucide-react";
+
+import { motion } from "framer-motion";
 
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
+
+const MotionBox = motion(Box);
+const MotionFlex = motion(Flex);
+const MotionText = motion(Text);
 
 const testimonies = [
   {
@@ -41,63 +60,125 @@ export const Testimonials = () => {
       position="relative"
       overflow="hidden"
       bg="#22007C"
-      py={{ base: 20, md: 28 }}
-      className="ps-md-5"
+      py={{ base: 20, md: 24 }}
     >
-      {/* Premium Background */}
-      <Box
+      {/* AMBIENT LIGHTS */}
+      <MotionBox
         position="absolute"
-        inset={0}
-        bgGradient="
-          radial(circle at top right, rgba(212,175,55,0.14), transparent 30%),
-          radial(circle at bottom left, rgba(175,56,0,0.18), transparent 28%)
-        "
+        top="-180px"
+        right="-120px"
+        w="380px"
+        h="380px"
+        borderRadius="full"
+        bg="#AF3800"
+        opacity={0.12}
+        filter="blur(120px)"
+        animate={{
+          scale: [1, 1.08, 1],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
       />
 
-      {/* Luxury Grid Texture */}
+      <MotionBox
+        position="absolute"
+        bottom="-220px"
+        left="-120px"
+        w="420px"
+        h="420px"
+        borderRadius="full"
+        bg="#D4AF37"
+        opacity={0.08}
+        filter="blur(130px)"
+        animate={{
+          scale: [1, 1.1, 1],
+        }}
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      {/* GRID TEXTURE */}
       <Box
         position="absolute"
         inset={0}
-        opacity={0.04}
+        opacity={0.035}
         backgroundImage={`
           linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
           linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)
         `}
-        backgroundSize="80px 80px"
+        backgroundSize="70px 70px"
       />
 
-      <Container maxW="7xl" position="relative" zIndex={2}>
-        {/* Header */}
-        <VStack gap={5} textAlign="center" mb={{ base: 14, md: 20 }}>
+      <Container
+        maxW="6xl"
+        position="relative"
+        zIndex={2}
+      >
+        {/* HEADER */}
+        <MotionFlex
+          direction="column"
+          align="center"
+          textAlign="center"
+          mb={{ base: 12, md: 16 }}
+          initial={{
+            opacity: 0,
+            y: 40,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{ once: true }}
+          transition={{
+            duration: 1,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+        >
           <HStack gap={3}>
-            <Box
+            <MotionBox
               h="1px"
-              w="60px"
               bgGradient="linear(to-r, transparent, #D4AF37)"
+              initial={{ width: 0 }}
+              whileInView={{ width: "55px" }}
+              transition={{ duration: 1 }}
             />
+
             <Text
               color="#D4AF37"
               textTransform="uppercase"
-              letterSpacing="0.25em"
+              letterSpacing="0.22em"
               fontWeight="700"
-              fontSize="sm"
+              fontSize="xs"
             >
               Client Experiences
             </Text>
-            <Box
+
+            <MotionBox
               h="1px"
-              w="60px"
               bgGradient="linear(to-l, transparent, #D4AF37)"
+              initial={{ width: 0 }}
+              whileInView={{ width: "55px" }}
+              transition={{ duration: 1 }}
             />
           </HStack>
 
           <Heading
-            maxW="900px"
+            mt={5}
+            maxW="760px"
             color="white"
-            lineHeight="1"
+            lineHeight="0.95"
             fontWeight="900"
-            fontSize={{ base: "3xl", md: "5xl", xl: "6xl" }}
-            letterSpacing="-0.03em"
+            fontSize={{
+              base: "2.8rem",
+              md: "4.8rem",
+            }}
+            letterSpacing="-0.05em"
           >
             Crafted Moments.
             <Text
@@ -111,26 +192,38 @@ export const Testimonials = () => {
           </Heading>
 
           <Text
+            mt={6}
             color="whiteAlpha.700"
-            maxW="720px"
-            fontSize={{ base: "md", md: "lg" }}
+            maxW="650px"
+            fontSize={{
+              base: "md",
+              md: "lg",
+            }}
             lineHeight="1.9"
           >
-            Every event is curated with elegance, precision, and intentional
-            detail — creating unforgettable experiences for discerning clients.
+            Every event is curated with elegance,
+            precision, and intentional detail —
+            creating unforgettable experiences for
+            discerning clients.
           </Text>
-        </VStack>
+        </MotionFlex>
 
-        {/* Main Slider */}
+        {/* SLIDER */}
         <Swiper
-          modules={[Autoplay, Pagination, EffectFade]}
+          modules={[
+            Autoplay,
+            Pagination,
+            EffectFade,
+          ]}
           effect="fade"
-          fadeEffect={{ crossFade: true }}
+          fadeEffect={{
+            crossFade: true,
+          }}
           slidesPerView={1}
           loop
           speed={1400}
           autoplay={{
-            delay: 4000,
+            delay: 5000,
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
           }}
@@ -138,173 +231,374 @@ export const Testimonials = () => {
             clickable: true,
           }}
           style={{
-            paddingBottom: "70px",
+            paddingBottom: "55px",
           }}
         >
-          {testimonies.map((testimonial, index) => (
-            <SwiperSlide key={index}>
-              <Flex
-                justify="center"
-                align="center"
-                px={{ base: 1, md: 6 }}
-              >
-                <Box
-                  position="relative"
-                  maxW="1050px"
+          {testimonies.map(
+            (testimonial, index) => (
+              <SwiperSlide key={index}>
+                <Flex
+                  justify="center"
+                  align="center"
                   w="100%"
-                  borderRadius="40px"
-                  overflow="hidden"
-                  bg="rgba(255,255,255,0.06)"
-                  border="1px solid rgba(255,255,255,0.08)"
-                  backdropFilter="blur(24px)"
-                  boxShadow="0 40px 100px rgba(0,0,0,0.35)"
                 >
-                  {/* Gold Accent Border */}
-                  <Box
-                    position="absolute"
-                    inset="0"
-                    borderRadius="40px"
-                    padding="1px"
-                    bgGradient="linear(to-br, rgba(212,175,55,0.5), transparent, rgba(175,56,0,0.4))"
-                    WebkitMask="
-                      linear-gradient(#fff 0 0) content-box,
-                      linear-gradient(#fff 0 0)
+                  <MotionBox
+                    initial={{
+                      opacity: 0,
+                      y: 45,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                    }}
+                    transition={{
+                      duration: 1,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    whileHover={{
+                      y: -8,
+                      scale: 1.01,
+                    }}
+                    position="relative"
+                    w="100%"
+                    maxW="820px"
+                    mx="auto"
+                    borderRadius="32px"
+                    overflow="hidden"
+                    bg="rgba(255,255,255,0.07)"
+                    border="1px solid rgba(255,255,255,0.08)"
+                    backdropFilter="blur(22px)"
+                    boxShadow="
+                      0 24px 80px rgba(0,0,0,0.24),
+                      inset 0 1px 0 rgba(255,255,255,0.05)
                     "
-                    WebkitMaskComposite="xor"
-                    pointerEvents="none"
-                  />
-
-                  <Flex
-                    direction={{ base: "column", lg: "row" }}
-                    minH={{ lg: "560px" }}
                   >
-                    {/* Left Visual */}
+                    {/* PREMIUM BORDER */}
                     <Box
-                      flex="0.95"
-                      position="relative"
-                      overflow="hidden"
-                    >
-                      {/* Overlay */}
-                      <Box
-                        position="absolute"
-                        inset={0}
-                        bgGradient="
-                          linear(to-t,
-                          rgba(34,0,124,0.92),
-                          rgba(34,0,124,0.25),
-                          transparent)
-                        "
-                      />
+                      position="absolute"
+                      inset="0"
+                      borderRadius="32px"
+                      padding="1px"
+                      bgGradient="
+                        linear(
+                          135deg,
+                          rgba(212,175,55,0.6),
+                          transparent,
+                          rgba(175,56,0,0.45)
+                        )
+                      "
+                      WebkitMask="
+                        linear-gradient(#fff 0 0) content-box,
+                        linear-gradient(#fff 0 0)
+                      "
+                      WebkitMaskComposite="xor"
+                      pointerEvents="none"
+                    />
 
-                      {/* Floating Quote */}
+                    {/* GLOW */}
+                    <MotionBox
+                      position="absolute"
+                      top="-90px"
+                      right="-70px"
+                      w="180px"
+                      h="180px"
+                      borderRadius="full"
+                      bg="#D4AF37"
+                      opacity={0.09}
+                      filter="blur(90px)"
+                      animate={{
+                        scale: [1, 1.08, 1],
+                      }}
+                      transition={{
+                        duration: 8,
+                        repeat: Infinity,
+                      }}
+                    />
+
+                    <Flex
+                      direction={{
+                        base: "column",
+                        md: "row",
+                      }}
+                      align="center"
+                      justify="center"
+                      minH={{
+                        base: "auto",
+                        md: "300px",
+                      }}
+                    >
+                      {/* LEFT ICON SIDE */}
                       <Flex
-                        position="absolute"
-                        top="30px"
-                        left="30px"
-                        w="82px"
-                        h="82px"
-                        borderRadius="full"
+                        flex={{
+                          base: "unset",
+                          md: "0 0 28%",
+                        }}
+                        w={{
+                          base: "100%",
+                          md: "28%",
+                        }}
                         align="center"
                         justify="center"
-                        bg="rgba(255,255,255,0.08)"
-                        border="1px solid rgba(255,255,255,0.14)"
-                        backdropFilter="blur(16px)"
+                        py={{
+                          base: 8,
+                          md: 0,
+                        }}
+                        position="relative"
                       >
-                        <Quote size={34} color="#D4AF37" />
-                      </Flex>
-                    </Box>
+                        {/* LIGHT RINGS */}
+                        <MotionFlex
+                          position="relative"
+                          align="center"
+                          justify="center"
+                          w={{
+                            base: "120px",
+                            md: "150px",
+                          }}
+                          h={{
+                            base: "120px",
+                            md: "150px",
+                          }}
+                          borderRadius="full"
+                          animate={{
+                            y: [0, -6, 0],
+                          }}
+                          transition={{
+                            duration: 5,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                          }}
+                        >
+                          {/* OUTER RING */}
+                          <MotionBox
+                            position="absolute"
+                            inset="0"
+                            borderRadius="full"
+                            border="1px solid rgba(255,255,255,0.12)"
+                            animate={{
+                              rotate: [0, 360],
+                            }}
+                            transition={{
+                              duration: 24,
+                              repeat: Infinity,
+                              ease: "linear",
+                            }}
+                          />
 
-                    {/* Right Content */}
-                    <Flex
-                      flex="1.05"
-                      p={{ base: 8, md: 14 }}
-                      justify="center"
-                    >
-                      <VStack
-                        align="start"
-                        justify="center"
-                        gap={8}
-                        h="100%"
-                      >
-                        {/* Rating */}
-                        <HStack gap={2}>
-                          {[...Array(5)].map((_, i) => (
-                            <Star
-                              key={i}
-                              size={18}
-                              fill="#D4AF37"
+                          {/* INNER RING */}
+                          <MotionBox
+                            position="absolute"
+                            inset="12px"
+                            borderRadius="full"
+                            border="1px solid rgba(212,175,55,0.25)"
+                            animate={{
+                              rotate: [360, 0],
+                            }}
+                            transition={{
+                              duration: 18,
+                              repeat: Infinity,
+                              ease: "linear",
+                            }}
+                          />
+
+                          {/* CENTER */}
+                          <Flex
+                            w="100%"
+                            h="100%"
+                            borderRadius="full"
+                            align="center"
+                            justify="center"
+                            bg="
+                              radial-gradient(
+                                circle,
+                                rgba(255,255,255,0.11),
+                                rgba(255,255,255,0.03)
+                              )
+                            "
+                            backdropFilter="blur(10px)"
+                            boxShadow="
+                              inset 0 0 30px rgba(255,255,255,0.04)
+                            "
+                          >
+                            <Quote
+                              size={38}
                               color="#D4AF37"
                             />
-                          ))}
-                        </HStack>
+                          </Flex>
+                        </MotionFlex>
+                      </Flex>
 
-                        {/* Quote */}
-                        <Text
-                          color="white"
-                          fontWeight="300"
-                          lineHeight={{ base: "1.9", md: "2" }}
-                          fontSize={{ base: "lg", md: "2xl" }}
-                          letterSpacing="0.01em"
+                      {/* CONTENT */}
+                      <Flex
+                        flex={{
+                          base: "unset",
+                          md: "0 0 72%",
+                        }}
+                        w={{
+                          base: "100%",
+                          md: "72%",
+                        }}
+                        align="center"
+                        justify="center"
+                        p={{
+                          base: 8,
+                          md: 10,
+                        }}
+                        pl={{
+                          base: 8,
+                          md: 2,
+                        }}
+                      >
+                        <VStack
+                          align="start"
+                          justify="center"
+                          gap={5}
+                          w="100%"
+                          maxW="500px"
                         >
-                          “{testimonial.text}”
-                        </Text>
+                          {/* STARS */}
+                          <HStack gap={1}>
+                            {[...Array(5)].map((_, i) => (
+                              <MotionBox
+                                key={i}
+                                animate={{
+                                  y: [0, -2, 0],
+                                }}
+                                transition={{
+                                  duration: 2,
+                                  delay: i * 0.08,
+                                  repeat: Infinity,
+                                }}
+                              >
+                                <Star
+                                  size={15}
+                                  fill="#D4AF37"
+                                  color="#D4AF37"
+                                />
+                              </MotionBox>
+                            ))}
+                          </HStack>
 
-                        {/* Divider */}
-                        <Box
-                          h="1px"
-                          w="100px"
-                          bgGradient="linear(to-r, #D4AF37, transparent)"
-                        />
-
-                        {/* Client */}
-                        <Box>
-                          <Heading
+                          {/* TESTIMONIAL */}
+                          <MotionText
+                            initial={{
+                              opacity: 0,
+                              y: 20,
+                            }}
+                            animate={{
+                              opacity: 1,
+                              y: 0,
+                            }}
+                            transition={{
+                              duration: 0.9,
+                            }}
                             color="white"
-                            fontSize={{ base: "xl", md: "2xl" }}
-                            fontWeight="800"
-                            letterSpacing="-0.02em"
+                            fontWeight="300"
+                            lineHeight={{
+                              base: "1.85",
+                              md: "1.9",
+                            }}
+                            fontSize={{
+                              base: "md",
+                              md: "1.28rem",
+                            }}
+                            letterSpacing="0.01em"
                           >
-                            {testimonial.name}
-                          </Heading>
+                            “{testimonial.text}”
+                          </MotionText>
 
-                          <Text
-                            color="#D4AF37"
-                            mt={2}
-                            fontSize="sm"
-                            fontWeight="600"
-                            letterSpacing="0.18em"
-                            textTransform="uppercase"
+                          {/* DIVIDER */}
+                          <MotionBox
+                            h="1px"
+                            bgGradient="
+                              linear(
+                                to-r,
+                                #D4AF37,
+                                transparent
+                              )
+                            "
+                            initial={{
+                              width: 0,
+                            }}
+                            animate={{
+                              width: "80px",
+                            }}
+                            transition={{
+                              duration: 1,
+                              delay: 0.15,
+                            }}
+                          />
+
+                          {/* CLIENT */}
+                          <MotionBox
+                            initial={{
+                              opacity: 0,
+                              y: 18,
+                            }}
+                            animate={{
+                              opacity: 1,
+                              y: 0,
+                            }}
+                            transition={{
+                              duration: 1,
+                              delay: 0.15,
+                            }}
                           >
-                            {testimonial.role}
-                          </Text>
-                        </Box>
-                      </VStack>
+                            <Heading
+                              color="white"
+                              fontSize={{
+                                base: "lg",
+                                md: "1.5rem",
+                              }}
+                              fontWeight="800"
+                              letterSpacing="-0.03em"
+                            >
+                              {testimonial.name}
+                            </Heading>
+
+                            <Text
+                              color="#D4AF37"
+                              mt={1}
+                              fontSize="11px"
+                              fontWeight="700"
+                              letterSpacing="0.22em"
+                              textTransform="uppercase"
+                            >
+                              {testimonial.role}
+                            </Text>
+                          </MotionBox>
+                        </VStack>
+                      </Flex>
                     </Flex>
-                  </Flex>
-                </Box>
-              </Flex>
-            </SwiperSlide>
-          ))}
+                  </MotionBox>
+                </Flex>
+              </SwiperSlide>
+            )
+          )}
         </Swiper>
 
-        {/* Pagination Styling */}
+        {/* PAGINATION */}
         <style jsx global>{`
           .swiper-pagination {
             bottom: 0px !important;
           }
 
           .swiper-pagination-bullet {
-            width: 11px;
-            height: 11px;
-            background: rgba(255, 255, 255, 0.25);
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.22);
             opacity: 1;
-            transition: all 0.4s ease;
+            transition: all 0.45s ease;
           }
 
           .swiper-pagination-bullet-active {
-            width: 38px;
+            width: 36px;
             border-radius: 999px;
-            background: linear-gradient(90deg, #d4af37, #af3800);
+            background: linear-gradient(
+              90deg,
+              #d4af37,
+              #af3800
+            );
+            box-shadow: 0 0 18px rgba(212, 175, 55, 0.45);
           }
         `}</style>
       </Container>

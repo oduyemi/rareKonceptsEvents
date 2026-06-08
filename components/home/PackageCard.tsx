@@ -176,7 +176,7 @@ export default function PackageCard({
         </Box>
 
         {/* CTA */}
-        <Button
+        {/* <Button
           h="54px"
           px={8}
           borderRadius="full"
@@ -196,7 +196,7 @@ export default function PackageCard({
           }}
         >
           Book Consultation
-        </Button>
+        </Button> */}
       </Stack>
     </Box>
   );

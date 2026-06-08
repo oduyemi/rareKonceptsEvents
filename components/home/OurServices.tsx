@@ -14,13 +14,13 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import { ArrowRight } from "lucide-react";
+import { motion, type Variants } from "framer-motion";
 
-import {
-  ArrowRight,
-  Sparkles,
-} from "lucide-react";
 
-import "animate.css";
+const MotionBox = motion(Box);
+const MotionFlex = motion(Flex);
+const MotionText = motion(Text);
 
 const services = [
   {
@@ -73,6 +73,47 @@ const services = [
   },
 ];
 
+const containerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.18,
+    },
+  },
+};
+
+const cardVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 120,
+    scale: 0.96,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 1,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
+  },
+};
+
+const imageVariants: Variants = {
+  hidden: {
+    scale: 1.15,
+    opacity: 0,
+  },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    transition: {
+      duration: 1.2,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
+  },
+};
+
 export const OurServices = () => {
   return (
     <Box
@@ -84,8 +125,8 @@ export const OurServices = () => {
       position="relative"
       overflow="hidden"
     >
-      {/* AMBIENT LIGHT */}
-      <Box
+      {/* BACKGROUND GLOWS */}
+      <MotionBox
         position="absolute"
         top="-180px"
         left="-120px"
@@ -94,10 +135,19 @@ export const OurServices = () => {
         borderRadius="full"
         bg="#22007C"
         opacity={0.04}
-        filter="blur(120px)"
+        filter="blur(110px)"
+        animate={{
+          scale: [1, 1.08, 1],
+          opacity: [0.04, 0.06, 0.04],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
       />
 
-      <Box
+      <MotionBox
         position="absolute"
         bottom="-180px"
         right="-120px"
@@ -106,7 +156,16 @@ export const OurServices = () => {
         borderRadius="full"
         bg="#AF3800"
         opacity={0.05}
-        filter="blur(130px)"
+        filter="blur(120px)"
+        animate={{
+          scale: [1, 1.12, 1],
+          opacity: [0.05, 0.07, 0.05],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
       />
 
       <Container
@@ -115,7 +174,7 @@ export const OurServices = () => {
         zIndex={2}
       >
         {/* HEADER */}
-        <Flex
+        <MotionFlex
           direction="column"
           align="center"
           textAlign="center"
@@ -123,7 +182,13 @@ export const OurServices = () => {
             base: 16,
             md: 24,
           }}
-          className="animate__animated animate__fadeInUp"
+          initial={{ opacity: 0, y: 70 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{
+            duration: 1,
+            ease: [0.22, 1, 0.36, 1] as const,
+          }}
         >
           <Badge
             bg="rgba(34,0,124,0.05)"
@@ -177,323 +242,382 @@ export const OurServices = () => {
             deliver unforgettable celebrations with
             elegance and precision.
           </Text>
-        </Flex>
+        </MotionFlex>
 
         {/* SERVICES */}
-        <Stack gap={14}>
-          {services.map((service, index) => {
-            const isRight =
-              service.direction === "right";
+        <MotionBox
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{
+            once: true,
+            amount: 0.1,
+          }}
+        >
+          <Stack gap={14}>
+            {services.map((service, index) => {
+              const isRight =
+                service.direction === "right";
 
-            return (
-              <Box
-                key={index}
-                position="relative"
-                overflow="hidden"
-                borderRadius={{
-                  base: "40px",
-                  md: isRight
-                    ? "0 320px 320px 0"
-                    : "320px 0 0 320px",
-                }}
-                bg="linear-gradient(135deg, rgba(34,0,124,1) 0%, rgba(34,0,124,0.96) 38%, rgba(255,255,255,1) 100%)"
-                boxShadow="0 30px 90px rgba(34,0,124,0.10)"
-                className={`animate__animated ${
-                  isRight
-                    ? "animate__fadeInLeft"
-                    : "animate__fadeInRight"
-                }`}
-              >
-                {/* INNER LIGHT */}
-                <Box
-                  position="absolute"
-                  top="-60px"
-                  right="-60px"
-                  w="220px"
-                  h="220px"
-                  borderRadius="full"
-                  bg="#AF3800"
-                  opacity={0.15}
-                  filter="blur(90px)"
-                />
-
-                <Grid
-                  templateColumns={{
-                    base: "1fr",
-                    md: "0.9fr 1.1fr",
+              return (
+                <MotionBox
+                  key={index}
+                  variants={cardVariants}
+                  whileHover={{
+                    y: -10,
+                    transition: {
+                      duration: 0.4,
+                    },
                   }}
-                  alignItems="center"
+                  position="relative"
+                  overflow="hidden"
+                  borderRadius={{
+                    base: "40px",
+                    md: isRight
+                      ? "0 320px 320px 0"
+                      : "320px 0 0 320px",
+                  }}
+                  bg="linear-gradient(135deg, rgba(34,0,124,1) 0%, rgba(34,0,124,0.96) 38%, rgba(255,255,255,1) 100%)"
+                  boxShadow="0 35px 100px rgba(34,0,124,0.12)"
                 >
-                  {/* IMAGE */}
-                  <Flex
-                    justify="center"
-                    order={{
-                      base: 1,
-                      md: isRight ? 2 : 1,
+                  {/* INNER LIGHT */}
+                  <MotionBox
+                    position="absolute"
+                    top="-60px"
+                    right="-60px"
+                    w="240px"
+                    h="240px"
+                    borderRadius="full"
+                    bg="#AF3800"
+                    opacity={0.15}
+                    filter="blur(90px)"
+                    animate={{
+                      scale: [1, 1.08, 1],
                     }}
-                    p={{
-                      base: 8,
-                      md: 10,
+                    transition={{
+                      duration: 7,
+                      repeat: Infinity,
+                      ease: "easeInOut",
                     }}
-                  >
-                    <Box
-                      position="relative"
-                      w={{
-                        base: "270px",
-                        md: "420px",
-                      }}
-                      h={{
-                        base: "270px",
-                        md: "420px",
-                      }}
-                      borderRadius="full"
-                    >
-                      {/* RING */}
-                      <Box
-                        position="absolute"
-                        inset="20px"
-                        borderRadius="full"
-                        border="3px solid rgba(255,255,255,0.18)"
-                      />
+                  />
 
-                      <Box
-                        position="absolute"
-                        inset="0"
+                  <Grid
+                    templateColumns={{
+                      base: "1fr",
+                      md: "0.9fr 1.1fr",
+                    }}
+                    alignItems="center"
+                  >
+                    {/* IMAGE */}
+                    <Flex
+                      justify="center"
+                      order={{
+                        base: 1,
+                        md: isRight ? 2 : 1,
+                      }}
+                      p={{
+                        base: 8,
+                        md: 10,
+                      }}
+                    >
+                      <MotionBox
+                        variants={imageVariants}
+                        whileHover={{
+                          scale: 1.04,
+                          rotate: 1.2,
+                        }}
+                        transition={{
+                          duration: 0.6,
+                        }}
+                        position="relative"
+                        w={{
+                          base: "270px",
+                          md: "420px",
+                        }}
+                        h={{
+                          base: "270px",
+                          md: "420px",
+                        }}
                         borderRadius="full"
-                        overflow="hidden"
-                        boxShadow="0 30px 80px rgba(0,0,0,0.20)"
                       >
-                        <Image
-                          src={service.image}
-                          alt={service.alt}
-                          w="100%"
-                          h="100%"
-                          loading="lazy"
-                          objectFit="cover"
-                          transition="0.7s ease"
-                          _hover={{
-                            transform:
-                              "scale(1.08)",
+                        {/* RING */}
+                        <MotionBox
+                          position="absolute"
+                          inset="20px"
+                          borderRadius="full"
+                          border="3px solid rgba(255,255,255,0.18)"
+                          animate={{
+                            rotate: [0, 360],
+                          }}
+                          transition={{
+                            duration: 25,
+                            repeat: Infinity,
+                            ease: "linear",
                           }}
                         />
 
                         <Box
                           position="absolute"
-                          inset={0}
-                          bg="linear-gradient(to top, rgba(0,0,0,0.35), rgba(0,0,0,0.02))"
-                        />
-                      </Box>
-                    </Box>
-                  </Flex>
-
-                  {/* CONTENT */}
-                  <Flex
-                    align="center"
-                    order={{
-                      base: 2,
-                      md: isRight ? 1 : 2,
-                    }}
-                    px={{
-                      base: 8,
-                      md: 12,
-                    }}
-                    py={{
-                      base: 10,
-                      md: 14,
-                    }}
-                  >
-                    <VStack
-                      align={
-                        isRight
-                          ? {
-                              base: "start",
-                              md: "end",
-                            }
-                          : "start"
-                      }
-                      textAlign={
-                        isRight
-                          ? {
-                              base: "left",
-                              md: "right",
-                            }
-                          : "left"
-                      }
-                      gap={6}
-                    >
-                      <HStack
-                        gap={4}
-                        justify={
-                          isRight
-                            ? {
-                                base: "flex-start",
-                                md: "flex-end",
-                              }
-                            : "flex-start"
-                        }
-                      >
-                        {!isRight && (
-                          <Box
-                            w="55px"
-                            h="2px"
-                            bg="#F6C453"
-                          />
-                        )}
-
-                        <Text
-                          color="#F6C453"
-                          textTransform="uppercase"
-                          letterSpacing="0.18em"
-                          fontWeight="700"
-                          fontSize="sm"
+                          inset="0"
+                          borderRadius="full"
+                          overflow="hidden"
+                          boxShadow="0 30px 80px rgba(0,0,0,0.20)"
                         >
-                          Luxury Service
-                        </Text>
+                          <MotionBox
+                            whileHover={{
+                              scale: 1.08,
+                            }}
+                            transition={{
+                              duration: 1,
+                            }}
+                            w="100%"
+                            h="100%"
+                          >
+                            <Image
+                              src={service.image}
+                              alt={service.alt}
+                              w="100%"
+                              h="100%"
+                              loading="lazy"
+                              objectFit="cover"
+                            />
+                          </MotionBox>
 
-                        {isRight && (
                           <Box
-                            w="55px"
-                            h="2px"
-                            bg="#F6C453"
+                            position="absolute"
+                            inset={0}
+                            bg="linear-gradient(to top, rgba(0,0,0,0.35), rgba(0,0,0,0.02))"
                           />
-                        )}
-                      </HStack>
+                        </Box>
+                      </MotionBox>
+                    </Flex>
 
-                      <Heading
-                        color={
-                          isRight
-                            ? "#AF3800"
-                            : "white"
-                        }
-                        fontWeight="800"
-                        lineHeight="0.95"
-                        letterSpacing="-0.05em"
-                        fontSize={{
-                          base: "2.2rem",
-                          md: "4rem",
-                        }}
-                        maxW="650px"
-                      >
-                        {service.title}
-                      </Heading>
-
-                      <Text
-                        color={
-                          isRight
-                            ? "gray.300"
-                            : "rgba(255,255,255,0.76)"
-                        }
-                        lineHeight="2"
-                        fontSize={{
-                          base: "md",
-                          md: "lg",
-                        }}
-                        maxW="640px"
-                      >
-                        {service.description}
-                      </Text>
-
-                      <HStack
-                        gap={3}
-                        flexWrap="wrap"
-                        justify={
+                    {/* CONTENT */}
+                    <Flex
+                      align="center"
+                      order={{
+                        base: 2,
+                        md: isRight ? 1 : 2,
+                      }}
+                      px={{
+                        base: 8,
+                        md: 12,
+                      }}
+                      py={{
+                        base: 10,
+                        md: 14,
+                      }}
+                    >
+                      <VStack
+                        align={
                           isRight
                             ? {
-                                base: "flex-start",
-                                md: "flex-end",
+                                base: "start",
+                                md: "end",
                               }
-                            : "flex-start"
+                            : "start"
                         }
+                        textAlign={
+                          isRight
+                            ? {
+                                base: "left",
+                                md: "right",
+                              }
+                            : "left"
+                        }
+                        gap={6}
                       >
-                        {[
-                          "Luxury",
-                          "Premium",
-                          "Elegant",
-                        ].map((item, i) => (
-                          <Flex
-                            key={i}
-                            align="center"
-                            gap={2}
-                            px={4}
-                            py={2}
-                            borderRadius="full"
-                            bg={
-                              isRight
-                                ? "rgba(34,0,124,0.05)"
-                                : "rgba(255,255,255,0.10)"
-                            }
-                            border={
-                              isRight
-                                ? "1px solid rgba(34,0,124,0.08)"
-                                : "1px solid rgba(255,255,255,0.10)"
-                            }
-                            backdropFilter="blur(10px)"
-                          >
-                            <Sparkles
-                              size={14}
-                              color="#F6C453"
+                        <HStack
+                          gap={4}
+                          justify={
+                            isRight
+                              ? {
+                                  base: "flex-start",
+                                  md: "flex-end",
+                                }
+                              : "flex-start"
+                          }
+                        >
+                          {!isRight && (
+                            <MotionBox
+                              w="55px"
+                              h="2px"
+                              bg="#F6C453"
+                              initial={{
+                                width: 0,
+                              }}
+                              whileInView={{
+                                width: "55px",
+                              }}
+                              transition={{
+                                duration: 1,
+                              }}
                             />
+                          )}
 
-                            <Text
-                              color={
+                          <Text
+                            color="#F6C453"
+                            textTransform="uppercase"
+                            letterSpacing="0.18em"
+                            fontWeight="700"
+                            fontSize="sm"
+                          >
+                            Luxury Service
+                          </Text>
+
+                          {isRight && (
+                            <MotionBox
+                              w="55px"
+                              h="2px"
+                              bg="#F6C453"
+                              initial={{
+                                width: 0,
+                              }}
+                              whileInView={{
+                                width: "55px",
+                              }}
+                              transition={{
+                                duration: 1,
+                              }}
+                            />
+                          )}
+                        </HStack>
+
+                        <MotionText
+                          initial={{
+                            opacity: 0,
+                            y: 40,
+                          }}
+                          whileInView={{
+                            opacity: 1,
+                            y: 0,
+                          }}
+                          transition={{
+                            duration: 0.9,
+                          }}
+                          as={Heading}
+                          color={
+                            isRight
+                              ? "#AF3800"
+                              : "white"
+                          }
+                          fontWeight="800"
+                          lineHeight="0.95"
+                          letterSpacing="-0.05em"
+                          fontSize={{
+                            base: "2.2rem",
+                            md: "4rem",
+                          }}
+                          maxW="650px"
+                        >
+                          {service.title}
+                        </MotionText>
+
+                        <MotionText
+                          initial={{
+                            opacity: 0,
+                            y: 30,
+                          }}
+                          whileInView={{
+                            opacity: 1,
+                            y: 0,
+                          }}
+                          transition={{
+                            duration: 1,
+                            delay: 0.1,
+                          }}
+                          color={
+                            isRight
+                              ? "gray.300"
+                              : "rgba(255,255,255,0.76)"
+                          }
+                          lineHeight="2"
+                          fontSize={{
+                            base: "md",
+                            md: "lg",
+                          }}
+                          maxW="640px"
+                        >
+                          {service.description}
+                        </MotionText>
+
+                        <MotionBox
+                          initial={{
+                            opacity: 0,
+                            y: 25,
+                          }}
+                          whileInView={{
+                            opacity: 1,
+                            y: 0,
+                          }}
+                          transition={{
+                            duration: 1,
+                            delay: 0.2,
+                          }}
+                        >
+                          <Link href="/services">
+                            <Button
+                              h="60px"
+                              px={8}
+                              borderRadius="full"
+                              bg={
                                 isRight
-                                  ? "gray.300"
+                                  ? "#22007C"
                                   : "white"
                               }
-                              fontSize="xs"
+                              color={
+                                isRight
+                                  ? "white"
+                                  : "#22007C"
+                              }
                               fontWeight="700"
-                              className="pt-3"
-                              letterSpacing="0.05em"
-                              textTransform="uppercase"
+                              boxShadow={
+                                isRight
+                                  ? "0 20px 50px rgba(34,0,124,0.18)"
+                                  : "0 20px 50px rgba(0,0,0,0.12)"
+                              }
+                              transition="all 0.35s ease"
+                              _hover={{
+                                transform:
+                                  "translateY(-3px)",
+                                bg: isRight
+                                  ? "#160052"
+                                  : "#F5F5F5",
+                              }}
                             >
-                              {item}
-                            </Text>
-                          </Flex>
-                        ))}
-                      </HStack>
+                              <Flex
+                                align="center"
+                                gap={2}
+                              >
+                                <Text className="pt-2">
+                                  Read More
+                                </Text>
 
-                      <Link href="/contact">
-                      <Button
-                        h="60px"
-                        px={8}
-                        borderRadius="full"
-                        bg={
-                          isRight
-                            ? "#22007C"
-                            : "white"
-                        }
-                        color={
-                          isRight
-                            ? "white"
-                            : "#22007C"
-                        }
-                        fontWeight="700"
-                        boxShadow={
-                          isRight
-                            ? "0 20px 50px rgba(34,0,124,0.18)"
-                            : "0 20px 50px rgba(0,0,0,0.12)"
-                        }
-                        transition="all 0.35s ease"
-                        _hover={{
-                          transform: "translateY(-3px)",
-                          bg: isRight
-                            ? "#160052"
-                            : "#F5F5F5",
-                        }}
-                      >
-                        <Flex align="center" gap={2}>
-                          <Text className="pt-2">Read More</Text>
-                          <ArrowRight size={18} />
-                        </Flex>
-                      </Button>
-                      </Link>
-                    </VStack>
-                  </Flex>
-                </Grid>
-              </Box>
-            );
-          })}
-        </Stack>
+                                <MotionBox
+                                  animate={{
+                                    x: [0, 4, 0],
+                                  }}
+                                  transition={{
+                                    duration: 1.5,
+                                    repeat: Infinity,
+                                  }}
+                                >
+                                  <ArrowRight
+                                    size={18}
+                                  />
+                                </MotionBox>
+                              </Flex>
+                            </Button>
+                          </Link>
+                        </MotionBox>
+                      </VStack>
+                    </Flex>
+                  </Grid>
+                </MotionBox>
+              );
+            })}
+          </Stack>
+        </MotionBox>
       </Container>
     </Box>
   );
